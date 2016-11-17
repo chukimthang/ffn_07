@@ -22,9 +22,25 @@ return [
 
     'league' => 'League',
     'danger' => 'danger',
+
+    'player' => 'Player',
+    'intro' => 'Introduction',
+    'birthday' => 'Birthday',
+    'position' => 'Position',
+    'avatar' => 'Avatar',
+    'team' => 'Team',
+    'position' => 'Position',
+    
+    'positions' => [
+        'go' => 'Goalkeeper',
+        'mi' => 'Midfielder',
+        'st' => 'Striker',
+        'de' => 'Defender',
+        'ce' => 'Centre Defender',
+    ],
  
     'message' => [
-        'holder' => 'Please Enter :name Name',
+        'holder' => 'Please Enter :name',
         'complate' => 'Complate add :name',
         'not_found' => 'Not found :name',
         'edit_success' => 'Edit success :name',

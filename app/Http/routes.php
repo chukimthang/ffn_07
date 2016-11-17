@@ -19,7 +19,8 @@ Route::get('/news', function() {
     return view('user.home');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function() {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'], 
+    'namespace' => 'Admin'], function() {
 
     Route::get('/', function() {
         return view('admin.index');
@@ -37,6 +38,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
     Route::resource('league', 'LeagueController');
     
     Route::resource('country', 'CountryController');
+
+    Route::resource('player', 'PlayerController', ['only' => 'index', 'create', 'store']);
 });
 
 Route::auth();

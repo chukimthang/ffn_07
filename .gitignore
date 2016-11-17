@@ -11,3 +11,4 @@ npm-debug.log
 bootstrap/cache/.gitignore 
 /nbproject/private/
 nbproject
+composer.lock
