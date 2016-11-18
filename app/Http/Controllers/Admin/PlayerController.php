@@ -44,4 +44,55 @@ class PlayerController extends Controller
         }
         return redirect()->back()->withErrors($player->valid());
     }
+
+    public function edit($id)
+    {
+        $player = Player::find($id);
+        if (!$player) {
+            return redirect()->route('admin.player.index')->with([
+                'flash_level' => Lang::get('admin.danger'),
+                'flash_message' => Lang::get('admin.message.not_found', ['name' => 'player'])
+            ]);
+        }
+        $teams = Team::all()->lists('name', 'id');
+        $countries = Country::all()->lists('name', 'id');
+        $positions = Lang::get('admin.positions');
+        return view('admin.player.edit', compact('player', 'teams', 'countries', 'positions'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $player = Player::find($id);
+        if (!$player) {
+            return redirect()->route('admin.player.index')->with([
+                'flash_level' => Lang::get('admin.danger'),
+                'flash_message' => Lang::get('admin.message.not_found', ['name' => 'player'])
+            ]);
+        }
+        $data = $request->only('name', 'introduction', 'position', 'birthday', 'avatar', 'team_id', 'country_id');
+        if ($player->validate($data, 'updateRule')) {
+            $player->update($data);
+            return redirect()->route('admin.player.index')->with([
+                'flash_level' => Lang::get('admin.success'),
+                'flash_message' => Lang::get('admin.message.edit_success', ['name' => 'Player'])
+            ]);
+        }
+        return redirect()->back()->withErrors($player->valid());
+    }
+
+    public function destroy($id)
+    {
+        $player = Player::find($id);
+        if (!$player) {
+            return redirect()->route('admin.player.index')->with([
+                'flash_level' => Lang::get('admin.danger'),
+                'flash_message' => Lang::get('admin.message.not_found', ['name' => 'player'])
+            ]);
+        }
+        $player->delete();
+        return redirect()->route('admin.player.index')->with([
+            'flash_level' => Lang::get('admin.success'),
+            'flash_message' => Lang::get('admin.message.delete_success', ['name' => 'Player'])
+        ]);
+    }
 }

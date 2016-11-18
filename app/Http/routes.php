@@ -39,7 +39,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'],
     
     Route::resource('country', 'CountryController');
 
-    Route::resource('player', 'PlayerController', ['only' => 'index', 'create', 'store']);
+    Route::resource('player', 'PlayerController');
 
     Route::resource('users', 'UserController', [
         'only' => ['index', 'update', 'destroy']
@@ -55,4 +55,3 @@ Route::group(['middleware' => 'auth'], function() {
         'edit', 'update'
     ]]);
 });
-

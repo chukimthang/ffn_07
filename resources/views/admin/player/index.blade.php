@@ -42,14 +42,18 @@
                     <tr class="odd gradeX" align="center">
                         <td>{!! $key + 1 !!}</td>
                         <td>{!! $player->name !!}</td>
-                        <td>{!! $player->position !!}</td>
+                        <td>{!! Lang::get('admin.positions.'.$player->position) !!}</td>
                         <td>{!! date("d-m-Y", strtotime($player->birthday)); !!}</td>
                         <td>{!! $player->team->name !!}</td>
                         <td>{!! $player->country->name !!}</td>
                         <td class="center"><i class="fa fa-pencil fa-fw"></i>
-                            <a href="#">@lang('admin.edit')</a> 
+                            <a href="{!! route('admin.player.edit', $player->id) !!}">@lang('admin.edit')</a> 
                         </td>
                         <td class="center">
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['admin.player.destroy',
+                                $player->id] ]) !!}
+                                {!! Form::submit(Lang::get('admin.delete'), ['class' => 'btn btn-danger btn-xs']) !!}
+                            {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach
