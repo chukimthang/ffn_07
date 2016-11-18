@@ -11,6 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class LeagueSeason extends Model
 {
+    protected $table = 'league_seasons';
+    
+    protected $fillable = ['year', 'league_id'];
+
     public function league()
     {
     	return $this->belongsTo(League::class);

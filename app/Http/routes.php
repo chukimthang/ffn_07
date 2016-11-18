@@ -44,6 +44,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'],
     Route::resource('users', 'UserController', [
         'only' => ['index', 'update', 'destroy']
     ]);
+
+    Route::resource('team_achievement', 'TeamAchievementController');
 });
 
 Route::auth();

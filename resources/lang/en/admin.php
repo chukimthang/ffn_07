@@ -38,7 +38,12 @@ return [
         'de' => 'Defender',
         'ce' => 'Centre Defender',
     ],
- 
+
+    'league_season' => 'League Season',
+
+    'team_achievement' => 'Team Achievement',
+    'year' => 'Year',
+    
     'message' => [
         'holder' => 'Please Enter :name',
         'complate' => 'Complate add :name',
