@@ -45,4 +45,6 @@ return [
     'count_readest_news_in_news_category' => 9,
 
     'hot_default' => 1,
+
+    'status' => ['New', 'Process', 'Finish', 'Destroy']
 ];

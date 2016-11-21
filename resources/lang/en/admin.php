@@ -29,6 +29,7 @@ return [
     'position' => 'Position',
     'avatar' => 'Avatar',
     'team' => 'Team',
+    'lb_team' => 'Team :number',
     'position' => 'Position',
 
     'all' => 'All :name',
@@ -38,7 +39,14 @@ return [
 
     'team_achievement' => 'Team Achievement',
     'year' => 'Year',
+
     'table_empty' => 'Table empty',
+
+    'match' => 'Match',
+    'start_time' => 'Start Time',
+    'end_time' => 'End Time',
+    'team_goal' => 'Team :number Goal',
+    'round' => 'Round',
     
     'message' => [
         'holder' => 'Please Enter :name',
@@ -58,5 +66,8 @@ return [
     'actived' => 'Disable',
 
     'league_season' => 'League Season',
-    'year' => 'Year'
+    'year' => 'Year',
+    'status' => 'Status',
+    'lb_team' => 'Team :name',
+    'goal' => 'Goal :name'
 ];

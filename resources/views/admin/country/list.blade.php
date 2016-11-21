@@ -56,7 +56,7 @@
             @else
                 <h4 align='center'>@lang('admin.message.empty_data', ['name' => 'Country'])</h4>
             @endif
-
+            
             <div class='col-lg-7' align='right'>
                 {!! $countries->render() !!}
             </div>

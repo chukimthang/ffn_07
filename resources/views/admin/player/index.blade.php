@@ -15,7 +15,7 @@
 
             <div class='col-md-12'>
                 <div class='col-md-3'>
-                    <a class='btn btn-primary' href='{{ route('admin.player.create') }}'>
+                    <a class='btn btn-primary' href="{{ route('admin.player.create') }}">
                         @lang('admin.bt_add', ['name' => 'Player'])
                     </a>
                 </div>
@@ -30,6 +30,7 @@
                         {!! Form::submit(Lang::get('admin.filter'), ['class' => 'btn btn-primary filter-player-admin']) !!}
                     {!! Form::close() !!}
                 </div>
+
                 <div class='col-md-3 col-md-offset-3 form-group'>
                     {!! Form::open(['method' => 'GET', 'route' => 'admin.player.search']) !!}
                         {!! Form::text('search', null, ['id' => 'text-search-player',
@@ -37,7 +38,6 @@
                         <i class='fa fa-search' aria-hidden='true' id='search-team'></i>
                     {!! Form::close() !!}
                 </div>
-            </div>
 
             <div class='col-lg-12'>
                 @include('admin.shared.flash')
