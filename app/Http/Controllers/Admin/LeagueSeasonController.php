@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 
 use App\LeagueSeason;
 use App\League;
+use App\Rank;
+use App\Team;
 
 use Lang;
 
@@ -32,7 +34,14 @@ class LeagueSeasonController extends Controller
         $season = new LeagueSeason;
         $data = $request->only('year', 'league_id');
         if ($season->validate($data, 'storeRule')) {
-            $season->create($data);
+            $season = $season->create($data);
+            $teams = Team::all();
+            foreach ($teams as $key => $team) {
+                $rank = new Rank;
+                $rank->team_id = $team->id;
+                $rank->league_season_id = $season->id;
+                $rank->save();
+            }
             return redirect()->route('admin.league_season.index')->with([
                 'flash_level' => Lang::get('admin.success'),
                 'flash_message' => Lang::get('admin.message.complate', ['name' => 'league season'])
@@ -84,6 +93,12 @@ class LeagueSeasonController extends Controller
             ]);
         }
         $season->delete();
+
+        $ranks = Rank::findRankbySeason($season->id);
+        foreach ($ranks as $key => $rank) {
+            $rank->delete();
+        }
+
         return redirect()->route('admin.league_season.index')->with([
             'flash_level' => Lang::get('admin.success'),
             'flash_message' => Lang::get('admin.message.delete_success', ['name' => 'league season'])

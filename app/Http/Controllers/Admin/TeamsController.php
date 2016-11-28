@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 
 use App\Team;
 use App\Country;
+use App\Rank;
 
 use Lang;
 use Session;
@@ -32,7 +33,7 @@ class TeamsController extends Controller
         $team = new Team();
         $data = $request->only('name', 'introduction', 'country_id', 'logo');
         if ($team->validate($data, 'storeRule')) {
-            Team::create($data);
+            $team->create($data);
             Session::flash('flash_message', Lang::get('teams.add_team_success'));
             return redirect()->back()->with('flash_level', 'success');
         }

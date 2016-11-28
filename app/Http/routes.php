@@ -57,7 +57,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin'],
 
     Route::resource('position', 'PositionController');
 
-    Route::resource('match', 'MatchController');
+    Route::resource('match', 'MatchController', ['except' => 'show']);
+
+    Route::get('match/filter', ['as' => 'admin.match.filter', 'uses' => 'MatchController@filter']);
+
+    Route::resource('rank', 'RankController', ['only' => ['index']]);
+
+    Route::get('rank/filter', ['as' => 'admin.rank.filter', 'uses' => 'RankController@filter']);
 });
 
 Route::auth();

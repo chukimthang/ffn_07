@@ -31,11 +31,10 @@
                     <table class="table table-hover">
                         <thead>
                             <tr align="center">
-                                <th>@lang('categories.index_table_column')</th>
+                                <th width="20%">@lang('categories.index_table_column')</th>
                                 <th>@lang('categories.name_table_column')</th>
-                                <th>@lang('categories.created_at_table_column')</th>
-                                <th>@lang('categories.delete_table_column')</th>
-                                <th>@lang('categories.edit_table_column')</th>    
+                                <th width="10%">@lang('categories.delete_table_column')</th>
+                                <th width="10%">@lang('categories.edit_table_column')</th>    
                             </tr>
                         </thead>
                         <tbody>
@@ -43,7 +42,6 @@
                                 <tr class="odd gradeX">
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $category->name }}</td>
-                                    <td>{{ $category->created_at->format('d-m-Y') }}</td>
                                     <td class="center">
                                         {!! Form::open(['method' => 'DELETE', 'route' => ['admin.categories.destroy', $category->id] ]) !!}
                                             {!! Form::submit( Lang::get('categories.btn_delete'), ['class' => 'btn btn-danger btn-xs']) !!}

@@ -1,4 +1,5 @@
 @extends('layouts.admin.app')
+@extends('layouts.admin.menu')
 
 @section('content')
     <div id="page-wrapper">

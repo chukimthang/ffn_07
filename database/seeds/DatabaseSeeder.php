@@ -15,12 +15,10 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(CountriesTableSeeder::class);
         $this->call(LeaguesTableSeeder::class);
-        $this->call(LeagueSeasonsTableSeeder::class);
         $this->call(TeamsTableSeeder::class);
         $this->call(PositionsTableSeeder::class);
         $this->call(PlayersTableSeeder::class);
         $this->call(CategoriesTableSeeder::class);
-        $this->call(ContriesTableSeeder::class);
         $this->call(NewsTableSeeder::class);
     }
 }

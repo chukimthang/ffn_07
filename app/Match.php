@@ -21,7 +21,7 @@ class Match extends BaseModel
         $result = [
             'team1_id' => 'required|exists:teams,id',
             'team2_id' => 'required|different:team1_id|exists:teams,id',
-            'start_time' => 'required|unique:matches,start_time',
+            'start_time' => 'required',
             'end_time' => 'required|after:start_time',
             'league_season_id' => 'required|exists:league_seasons,id',
             'status' => 'required'
@@ -42,6 +42,23 @@ class Match extends BaseModel
     {
         $team = Team::find($id);
         return $team->name;
+    }
+
+    public function scopeFilterMatch($query, $id)
+    {
+        return $query->where('league_season_id', $id);
+    }
+
+    public function scopeFindMatchbyTeam($query, $leagueSeasonId, $teamId, $status)
+    {
+        return $query->where([
+                'league_season_id' => $leagueSeasonId,
+                'status' => $status
+            ])->orWhere([
+                'team1_id' => $teamId,
+                'team2_id' => $teamId
+            ]
+        );
     }
 
     public function leagueSeason()

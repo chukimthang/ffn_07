@@ -19,6 +19,17 @@
                 <div class='space20'></div>
             </div>
 
+             <div class='col-md-3 form-group'>
+                {!! Form::open(['method' => 'GET', 'route' => 'admin.match.filter']) !!}
+                    {!! Form::select('filter', $leagueSeasons, null, [
+                        'class' => 'form-control', 
+                        'placeholder' => Lang::get('admin.all', ['name' => 'Season']),
+                    ]) !!}
+
+                    {!! Form::submit(Lang::get('admin.filter'), ['class' => 'btn btn-primary filter-player-admin']) !!}
+                {!! Form::close() !!}
+            </div>
+
             <div class='col-lg-12'>
                 @include('admin.shared.flash')
             </div>
@@ -53,9 +64,16 @@
                                 <td>{!! config('view.status')[$match->status] !!}</td>
                                 <td>{!! $match->leagueSeason->year !!}</td>
                                 <td class='center'><i class='fa fa-pencil fa-fw'></i>
-                                    <a href="#">@lang('admin.edit')</a> 
+                                    <a href="{!! route('admin.match.edit', $match->id) !!}">
+                                        @lang('admin.edit')
+                                    </a> 
                                 </td>
                                 <td class='center'>
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['admin.match.destroy',
+                                        $match->id] ]) !!}
+                                        {!! Form::submit(Lang::get('admin.delete'),
+                                            ['class' => 'btn btn-danger btn-xs']) !!}
+                                    {!! Form::close() !!}
                                 </td>
                             </tr>
                         @endforeach
